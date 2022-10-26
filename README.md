@@ -36,7 +36,7 @@ Select * From testSubTable;
 ## Install Shifu
 you just need to use one command to install Shifu 😋
 ```bash
-kubectl apply -f testdir/shifu_install.yml
+kubectl apply -f shifu_install.yml
 ```
 
 ## Run Shifu TelemetryService
