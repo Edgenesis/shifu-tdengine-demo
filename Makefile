@@ -12,18 +12,18 @@ pull-tdengint-image:
 	docker pull tdengine/tdengine:3.0.1.4
 
 docker-save-images:
-	docker save > ./testdir/images/kube-rbac-proxy.tar.gz
-	docker save > ./testdir/images/modbus-th-driver.tar.gz
-	docker save > ./testdir/images/shifu-controller.tar.gz
-	docker save > ./testdir/images/tdengine.tar.gz
-	docker save > ./testdir/images/telemetryservice.tar.gz
+	docker save > ./images/kube-rbac-proxy.tar.gz
+	docker save > ./images/modbus-th-driver.tar.gz
+	docker save > ./images/shifu-controller.tar.gz
+	docker save > ./images/tdengine.tar.gz
+	docker save > ./images/telemetryservice.tar.gz
 
 docker-load-images:
-	docker load < ./testdir/images/kube-rbac-proxy.tar.gz
-	docker load < ./testdir/images/modbus-th-driver.tar.gz
-	docker load < ./testdir/images/shifu-controller.tar.gz
-	docker load < ./testdir/images/tdengine.tar.gz
-	docker load < ./testdir/images/telemetryservice.tar.gz
+	docker load < ./images/kube-rbac-proxy.tar.gz
+	docker load < ./images/modbus-th-driver.tar.gz
+	docker load < ./images/shifu-controller.tar.gz
+	docker load < ./images/tdengine.tar.gz
+	docker load < ./images/telemetryservice.tar.gz
 
 kind-load-images:
 	kind load docker-image quay.io/brancz/kube-rbac-proxy:v0.13.1
