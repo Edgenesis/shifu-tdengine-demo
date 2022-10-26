@@ -1,0 +1,3 @@
+[submodule "shifu"]
+	path = shifu
+	url = https://github.com/Edgenesis/shifu.git
