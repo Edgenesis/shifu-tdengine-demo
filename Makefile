@@ -18,12 +18,12 @@ pull-rbac-image:
 	docker pull quay.io/brancz/kube-rbac-proxy:v0.13.1
 
 docker-save-images:
-	docker save > ./images/kube-rbac-proxy.tar.gz
-	docker save > ./images/modbus-th-driver.tar.gz
-	docker save > ./images/shifu-controller.tar.gz
-	docker save > ./images/tdengine.tar.gz
-	docker save > ./images/telemetryservice.tar.gz
-	docker save > ./images/deviceshifu-http-http.tar.gz
+	docker save quay.io/brancz/kube-rbac-proxy:v0.13.1 > ./images/kube-rbac-proxy.tar.gz
+	docker save edgehub/modbus-th-driver:nightly > ./images/modbus-th-driver.tar.gz
+	docker save edgehub/shifu-controller:nightly > ./images/shifu-controller.tar.gz
+	docker save tdengine/tdengine:3.0.1.4 > ./images/tdengine.tar.gz
+	docker save edgehub/telemetryservice:nightly > ./images/telemetryservice.tar.gz
+	docker save edgehub/deviceshifu-http-http:nightly > ./images/deviceshifu-http-http.tar.gz
 
 docker-load-images:
 	docker load < ./images/kube-rbac-proxy.tar.gz
