@@ -53,8 +53,8 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "empty", http.StatusInternalServerError)
 		return
 	}
-	t := float64(data[1]) / 10
-	h := float64(data[3]) / 10
+	h := float64(data[1]) / 10
+	t := float64(data[3]) / 10
 	log.Println(data)
 	fmt.Fprintf(w, "t:%f;h:%f", t, h)
 }
