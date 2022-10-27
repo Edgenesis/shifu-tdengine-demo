@@ -2,11 +2,11 @@ buildx-build-driver-image:
 	docker buildx build -f Dockerfile.modbusdriver -t edgehub/modbus-th-driver:nightly . --load
 
 buildx-build-image-deviceshifu-http-http:
-	docker buildx build --platform=linux/amd64 -f shifu/dockerfiles/Dockerfile.deviceshifuHTTP \
-		-t edgehub/deviceshifu-http-http:nightly --load
+	cd shifu && docker buildx build --platform=linux/arm64 -f dockerfiles/Dockerfile.deviceshifuHTTP \
+		-t edgehub/deviceshifu-http-http:nightly . --load && cd ..
 
 build-shifu-image:
-	cd shifu && docker buildx build --platform=linux/amd64 -f shifu/pkg/k8s/crd/Dockerfile -t edgehub/shifu-controller:nightly . --load
+	cd shifu && docker buildx build --platform=linux/arm64 -f pkg/k8s/crd/Dockerfile -t edgehub/shifu-controller:nightly . --load && cd ..
 
 pull-tdengint-image:
 	docker pull tdengine/tdengine:3.0.1.4
