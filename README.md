@@ -1,5 +1,5 @@
 ## NOTICE❗️❗️❗️
-Please make sure you are currently under Wi-Fi ShifuTest so that you can connect to our device. 🪧
+Please make sure you are currently under Wi-Fi ShifuTest(Password:12345678) so that you can connect to our device. 🪧
 
 ## Require
 
@@ -24,7 +24,7 @@ docker exec -it tdengine taos
 Init TDEngine and Insert a default Data 🕹
 ```sql
 Create database shifu;
-Use Shifu;
+Use shifu;
 Create STable testTable (ts TIMESTAMP, rawData varchar(255)) TAGS (defaultTag varchar(255));
 Create Table testSubTable Using testTable TAGS('Shifu');
 Insert Into testSubTable Values(Now,'TestData');
@@ -75,6 +75,7 @@ docker exec -it tdengine taos
 ```
 Use the following SQL command to display the data you have collected.
 ```sql
+use shifu;
 Select * From testSubTable;
 ```
 😘 Thank you for experiencing all the demos. have fun today!
