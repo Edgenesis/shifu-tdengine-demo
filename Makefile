@@ -1,5 +1,5 @@
 buildx-build-driver-image:
-	docker buildx build -f Dockerfile.modbusdriver -t edgehub/modbus-th-driver:nightly . --load
+	docker buildx build --platform=linux/amd64 -f Dockerfile.modbusdriver -t edgehub/modbus-th-driver:nightly . --load
 
 buildx-build-image-deviceshifu-http-http:
 	cd shifu && docker buildx build --platform=linux/$(shell go env GOARCH) -f dockerfiles/Dockerfile.deviceshifuHTTP \

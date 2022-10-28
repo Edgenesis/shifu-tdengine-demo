@@ -59,7 +59,7 @@ Select * From testSubTable;
 exit
 ```
 
-🎉🎉 Congratulations on your successful installation of TDEngine! 🫶🏿
+🎉🎉 Congratulations on your successful installation of TDEngine! 👁️
 
 ## Install Shifu
 
@@ -94,7 +94,7 @@ Then, you can use the following command to install the telemetry service into yo
 kubectl apply -f telemetryservicedeploy
 ```
 
-🚀 Congratulations on your successful installation of Telemetry Service of Shifu! Flowing is the last Step you need to do. 👍🏿
+🚀 Congratulations on your successful installation of Telemetry Service of Shifu! Flowing is the last Step you need to do. 👍
 
 ## Run deviceShifu to Connect to Temperature and humidity meter
 
