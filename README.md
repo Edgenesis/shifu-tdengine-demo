@@ -18,7 +18,7 @@ Please make sure you are currently under Wi-Fi ShifuTest(Password:12345678) so t
 load all images to docker 🪞
 
 ```bash
-tar -xvzf shifu-tdengine-demo-arch64.tar.gz
+tar -xvzf shifu-tdengine-demo-[your arch].tar.gz
 cd shifu-tdengine-demo
 make docker-load-images
 make kind-load-images
@@ -70,14 +70,15 @@ kubectl apply -f shifu_install.yml
 ```
 
 ## Run Shifu TelemetryService
-First, you need to modify the value of  `spec/serviceSettings/SQLSetting/serverAddress` on  `devicedeploy/http-deviceshifu-telemetryservice.yaml`.
+First, you need to modify `devicedeploy/http-deviceshifu-telemetryservice.yaml`, and change the value of  `spec/serviceSettings/SQLSetting/serverAddress`.
+
 ```yaml
 --- #telemetry_service.yaml
 spec:
   telemetrySeriveEndpoint: http://telemetryservice.shifu-service.svc.cluster.local
   serviceSettings:
     SQLSetting:
-      serverAddress: 192.168.0.37:6041 # edit it to your your IP
+      serverAddress: [YOUR_IP]:6041 # edit it to your your IP
       username: root
       secret: taosdata
       dbName: shifu
@@ -94,11 +95,11 @@ Then, you can use the following command to install the telemetry service into yo
 kubectl apply -f telemetryservicedeploy
 ```
 
-🚀 Congratulations on your successful installation of Telemetry Service of Shifu! Flowing is the last Step you need to do. 👍
+🚀 Congratulations on your successful installation of Shifu's Telemetry Service! Following is the last step you need to do. 👍
 
 ## Run deviceShifu to Connect to Temperature and humidity meter
 
-You can only use on command to start it, too 🐎。
+🐎 One-liner:
 
 ```bash
 kubectl apply -f devicedeploy
@@ -119,4 +120,4 @@ use shifu;
 Select * From testSubTable;
 ```
 
-😘 Thank you for experiencing all the demos. have fun today!
+😘 Thank you for experimenting all the demos. Have fun today!
