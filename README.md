@@ -132,4 +132,5 @@ t is the current temperature reading, and h is the current humidity reading.
 
 ```bash
 kubectl delete -f devicedeploy && kubectl delete -f telemetryservicedeploy
+docker stop tdengine
 ```
