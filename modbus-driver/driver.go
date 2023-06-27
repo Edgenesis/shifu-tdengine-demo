@@ -45,6 +45,8 @@ func main() {
 	log.Println("Connect device Success!")
 	mux := http.NewServeMux()
 	mux.HandleFunc("/th", handler)
+	mux.HandleFunc("/Temperature", Temperature)
+	mux.HandleFunc("/Humidity", Humidity)
 	http.ListenAndServe(":9090", mux)
 }
 
@@ -57,4 +59,20 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	t := float64(data[3]) / 10
 	log.Println(data)
 	fmt.Fprintf(w, "t:%f;h:%f", t, h)
+}
+
+func Temperature(w http.ResponseWriter, r *http.Request) {
+	if len(data) == 0 {
+		http.Error(w, "empty", http.StatusInternalServerError)
+		return
+	}
+	fmt.Fprintf(w, "%f", float64(data[1])/10)
+}
+
+func Humidity(w http.ResponseWriter, r *http.Request) {
+	if len(data) == 0 {
+		http.Error(w, "empty", http.StatusInternalServerError)
+		return
+	}
+	fmt.Fprintf(w, "%f", float64(data[3])/10)
 }
