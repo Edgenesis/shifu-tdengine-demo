@@ -37,10 +37,12 @@ func connect() {
 			data, err = client.ReadHoldingRegisters(0, 2)
 			if err != nil {
 				log.Println("error: ", err)
+				// make pod restart
+				panic(err)
 			} else {
 				temperature = calRealData(data[0], data[1])
 				humidity = calRealData(data[2], data[3])
-				log.Printf("Data: temperature: %f, humidity: %f", temperature, humidity)
+				log.Printf("Data: temperature: %.2f, humidity: %.2f", temperature, humidity)
 			}
 		}
 	}
@@ -62,7 +64,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	fmt.Fprintf(w, "temperature:%f;humidity:%f", temperature, humidity)
+	fmt.Fprintf(w, "temperature:%.2f;humidity:%.2f", temperature, humidity)
 }
 
 func Temperature(w http.ResponseWriter, r *http.Request) {
@@ -70,7 +72,7 @@ func Temperature(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "empty", http.StatusInternalServerError)
 		return
 	}
-	fmt.Fprintf(w, "%f", temperature)
+	fmt.Fprintf(w, "%.2f", temperature)
 }
 
 func Humidity(w http.ResponseWriter, r *http.Request) {
@@ -78,7 +80,7 @@ func Humidity(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "empty", http.StatusInternalServerError)
 		return
 	}
-	fmt.Fprintf(w, "%f", humidity)
+	fmt.Fprintf(w, "%.2f", humidity)
 }
 
 func calRealData(high, low byte) float64 {
