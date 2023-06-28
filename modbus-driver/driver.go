@@ -10,7 +10,10 @@ import (
 	"github.com/goburrow/modbus"
 )
 
-var data []byte
+var (
+	data                  []byte
+	temperature, humidity float64
+)
 
 func connect() {
 	var client modbus.Client
@@ -19,6 +22,7 @@ func connect() {
 		handler := modbus.NewTCPClientHandler(os.Getenv("DEVICE_ADDRESS"))
 		handler.Timeout = 10 * time.Second
 		handler.SlaveId = 0x01
+
 		err := handler.Connect()
 		if err == nil {
 			client = modbus.NewClient(handler)
@@ -34,7 +38,9 @@ func connect() {
 			if err != nil {
 				log.Println("error: ", err)
 			} else {
-				log.Println("Data: ", data)
+				temperature = calRealData(data[0], data[1])
+				humidity = calRealData(data[2], data[3])
+				log.Printf("Data: temperature: %f, humidity: %f", temperature, humidity)
 			}
 		}
 	}
@@ -55,10 +61,8 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "empty", http.StatusInternalServerError)
 		return
 	}
-	h := float64(data[1]) / 10
-	t := float64(data[3]) / 10
-	log.Println(data)
-	fmt.Fprintf(w, "t:%f;h:%f", t, h)
+
+	fmt.Fprintf(w, "temperature:%f;humidity:%f", temperature, humidity)
 }
 
 func Temperature(w http.ResponseWriter, r *http.Request) {
@@ -66,7 +70,7 @@ func Temperature(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "empty", http.StatusInternalServerError)
 		return
 	}
-	fmt.Fprintf(w, "%f", float64(data[1])/10)
+	fmt.Fprintf(w, "%f", temperature)
 }
 
 func Humidity(w http.ResponseWriter, r *http.Request) {
@@ -74,5 +78,9 @@ func Humidity(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "empty", http.StatusInternalServerError)
 		return
 	}
-	fmt.Fprintf(w, "%f", float64(data[3])/10)
+	fmt.Fprintf(w, "%f", humidity)
+}
+
+func calRealData(high, low byte) float64 {
+	return (float64(high)*256 + float64(low)) / 10
 }
