@@ -2,25 +2,12 @@
 
 Please make sure you are currently under Wi-Fi ShifuTest(Password:12345678) so that you can connect to our device. 🪧
 
-## Require
-
-1. make sure you are **running** Shifu Demo from Task 1
-
-2. Get the following images from Shifu Team:
-
-   ```text
-   shifu-tdengine-demo-arch64.tar.gz
-   shifu-tdengine-demo-amd64.tar.gz
-   ```
-
 ## Prepare
 
 load all images to docker 🪞
 
 ```bash
-tar -xvzf shifu-tdengine-demo-[your arch].tar.gz
-cd shifu-tdengine-demo
-make docker-load-images
+make buildx-build-driver-image
 make kind-load-images
 ```
 
@@ -52,10 +39,9 @@ Init TDEngine and Insert a default Data 🕹
 ```sql
 Create database shifu;
 Use shifu;
-Create STable testTable (ts TIMESTAMP, rawData varchar(255)) TAGS (defaultTag varchar(255));
-Create Table testSubTable Using testTable TAGS('Shifu');
-Insert Into testSubTable Values(Now,'TestData');
-Select * From testSubTable;
+Create TABLE Temperature (ts TIMESTAMP, v FLOAT);
+Create TABLE Humidity_history (ts TIMESTAMP, v FLOAT);
+SHOW TABLES;
 exit
 ```
 
@@ -117,7 +103,8 @@ Use the following SQL command to display the data you have collected.
 
 ```sql
 use shifu;
-Select * From testSubTable;
+Select * From Temperature;
+Select * From Humidity;
 ```
 
 You should see something like this:

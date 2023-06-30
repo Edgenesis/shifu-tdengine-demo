@@ -8,12 +8,12 @@ spec:
   telemetrySeriveEndpoint: http://telemetryservice.shifu-service.svc.cluster.local
   serviceSettings:
     SQLSetting:
-      serverAddress: 192.168.0.37:6041 # edit it to your your IP
+      serverAddress: 192.168.0.208:6041 # edit it to your your IP
       username: root
       secret: taosdata
       dbName: shifu
       dbTable: Temperature
-      dbtype: TDEngine
+      dbtype: TDengine
 ---
 apiVersion: shifu.edgenesis.io/v1alpha1
 kind: TelemetryService
@@ -24,9 +24,9 @@ spec:
   telemetrySeriveEndpoint: http://telemetryservice.shifu-service.svc.cluster.local
   serviceSettings:
     SQLSetting:
-      serverAddress: 192.168.0.37:6041 # edit it to your your IP
+      serverAddress: 192.168.0.208:6041 # edit it to your your IP
       username: root
       secret: taosdata
       dbName: shifu
       dbTable: Humidity
-      dbtype: TDEngine
+      dbtype: TDengine

@@ -40,8 +40,8 @@ func connect() {
 				// make pod restart
 				panic(err)
 			} else {
-				temperature = calRealData(data[0], data[1])
-				humidity = calRealData(data[2], data[3])
+				temperature = calRealData(data[2], data[3])
+				humidity = calRealData(data[0], data[1])
 				log.Printf("Data: temperature: %.2f, humidity: %.2f", temperature, humidity)
 			}
 		}
