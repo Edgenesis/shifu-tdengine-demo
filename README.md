@@ -90,6 +90,11 @@ kubectl apply -f telemetryservicedeploy
 ```bash
 kubectl apply -f devicedeploy
 ```
+By default, the tdengine's secret which store the username and password in the file `http-deviceshifu-secret.yaml`
+If you want to create secret by yourself, you can use following command to create
+```bash
+kubectl create secret  generic taosdata --from-literal=username="root" --from-literal=password="taosdata" -n devices
+```
 
 # Enjoy the results of your work🕹
 
