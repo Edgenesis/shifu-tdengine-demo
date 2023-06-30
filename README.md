@@ -40,7 +40,7 @@ Init TDEngine and Insert a default Data 🕹
 Create database shifu;
 Use shifu;
 Create TABLE Temperature (ts TIMESTAMP, v FLOAT);
-Create TABLE Humidity_history (ts TIMESTAMP, v FLOAT);
+Create TABLE Humidity (ts TIMESTAMP, v FLOAT);
 SHOW TABLES;
 exit
 ```
