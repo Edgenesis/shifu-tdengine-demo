@@ -33,9 +33,11 @@ spec:
     spec:
       containers:
         - name: telemetryservice
-          image: edgehub/telemetryservice:v0.8.0
+          image: edgehub/telemetryservice:nightly
           ports:
             - containerPort: 8080
           env:
             - name: SERVER_LISTEN_PORT
               value: :8080
+            - name: EDGEDEVICE_NAMESPACE
+              value: devices
