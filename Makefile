@@ -1,5 +1,5 @@
 buildx-build-driver-image:
-	docker buildx build --platform=linux/amd64 -f Dockerfile.modbusdriver -t edgehub/modbus-th-driver:nightly . --load
+	docker buildx build -f Dockerfile.modbusdriver -t edgehub/modbus-th-driver:nightly . --load
 
 buildx-build-image-deviceshifu-http-http:
 	cd shifu && docker buildx build --platform=linux/$(shell go env GOARCH) -f dockerfiles/Dockerfile.deviceshifuHTTP \
@@ -34,8 +34,4 @@ docker-load-images:
 	docker load < ./images/deviceshifu-http-http.tar.gz
 
 kind-load-images:
-	kind load docker-image quay.io/brancz/kube-rbac-proxy:v0.13.1
 	kind load docker-image edgehub/modbus-th-driver:nightly
-	kind load docker-image edgehub/shifu-controller:nightly
-	kind load docker-image edgehub/deviceshifu-http-http:nightly
-	kind load docker-image edgehub/telemetryservice:nightly

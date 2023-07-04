@@ -2,25 +2,12 @@
 
 Please make sure you are currently under Wi-Fi ShifuTest(Password:12345678) so that you can connect to our device. 🪧
 
-## Require
-
-1. make sure you are **running** Shifu Demo from Task 1
-
-2. Get the following images from Shifu Team:
-
-   ```text
-   shifu-tdengine-demo-arch64.tar.gz
-   shifu-tdengine-demo-amd64.tar.gz
-   ```
-
 ## Prepare
 
 load all images to docker 🪞
 
 ```bash
-tar -xvzf shifu-tdengine-demo-[your arch].tar.gz
-cd shifu-tdengine-demo
-make docker-load-images
+make buildx-build-driver-image
 make kind-load-images
 ```
 
@@ -52,10 +39,9 @@ Init TDEngine and Insert a default Data 🕹
 ```sql
 Create database shifu;
 Use shifu;
-Create STable testTable (ts TIMESTAMP, rawData varchar(255)) TAGS (defaultTag varchar(255));
-Create Table testSubTable Using testTable TAGS('Shifu');
-Insert Into testSubTable Values(Now,'TestData');
-Select * From testSubTable;
+Create TABLE Temperature (ts TIMESTAMP, v FLOAT);
+Create TABLE Humidity (ts TIMESTAMP, v FLOAT);
+SHOW TABLES;
 exit
 ```
 
@@ -104,6 +90,11 @@ kubectl apply -f telemetryservicedeploy
 ```bash
 kubectl apply -f devicedeploy
 ```
+By default, the tdengine's secret which store the username and password in the file `http-deviceshifu-secret.yaml`
+If you want to create secret by yourself, you can use following command to create
+```bash
+kubectl create secret  generic taosdata --from-literal=username="root" --from-literal=password="taosdata" -n devices
+```
 
 # Enjoy the results of your work🕹
 
@@ -117,7 +108,8 @@ Use the following SQL command to display the data you have collected.
 
 ```sql
 use shifu;
-Select * From testSubTable;
+Select * From Temperature;
+Select * From Humidity;
 ```
 
 You should see something like this:

@@ -12,9 +12,9 @@ spec:
   selector:
     app: telemetryservice
   ports:
-  - port: 80
-    protocol: TCP
-    targetPort: 8080
+    - port: 80
+      protocol: TCP
+      targetPort: 8080
   type: LoadBalancer
 ---
 apiVersion: apps/v1
@@ -32,10 +32,12 @@ spec:
         app: telemetryservice
     spec:
       containers:
-      - name: telemetryservice
-        image: edgehub/telemetryservice:nightly
-        ports:
-        - containerPort: 8080
-        env:
-        - name: SERVER_LISTEN_PORT
-          value: :8080
+        - name: telemetryservice
+          image: edgehub/telemetryservice:nightly
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SERVER_LISTEN_PORT
+              value: :8080
+            - name: EDGEDEVICE_NAMESPACE
+              value: devices
