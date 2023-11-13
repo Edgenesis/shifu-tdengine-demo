@@ -135,7 +135,7 @@ Select * From Humidity;
 ```
 
 You should see something like this:
-<img width="473" alt="image" src="https://user-images.githubusercontent.com/6934678/198533517-3eb948e7-5c26-479e-9c70-5306d6ce830f.png">
+![temp&hum](images/temp&hum.png)
 
 t is the current temperature reading, and h is the current humidity reading.
 
