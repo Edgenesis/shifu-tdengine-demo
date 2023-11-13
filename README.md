@@ -1,6 +1,6 @@
-## NOTICE❗️❗️❗️
+## IMPORTANT❗️❗️❗️
 
-Please make sure you are currently under Wi-Fi ShifuTest(Password:12345678) so that you can connect to our device. 🪧
+### Please make sure you are currently under Wi-Fi ShifuTest(Password:12345678) so that you can connect to our device. 🪧
 
 ## Prepare
 
@@ -60,16 +60,38 @@ First, you need to modify `devicedeploy/http-deviceshifu-telemetryservice.yaml`,
 
 ```yaml
 --- #telemetry_service.yaml
+apiVersion: shifu.edgenesis.io/v1alpha1
+kind: TelemetryService
+metadata:
+  name: push-endpoint-1
+  namespace: devices
 spec:
   telemetrySeriveEndpoint: http://telemetryservice.shifu-service.svc.cluster.local
   serviceSettings:
     SQLSetting:
-      serverAddress: [YOUR_IP]:6041 # edit it to your your IP
+      serverAddress: 192.168.0.172:6041 # edit it to your your IP
       username: root
       secret: taosdata
       dbName: shifu
-      dbTable: testSubTable
-      dbtype: TDEngine
+      dbTable: Temperature
+      dbtype: TDengine
+---
+apiVersion: shifu.edgenesis.io/v1alpha1
+kind: TelemetryService
+metadata:
+  name: push-endpoint-2
+  namespace: devices
+spec:
+  telemetrySeriveEndpoint: http://telemetryservice.shifu-service.svc.cluster.local
+  serviceSettings:
+    SQLSetting:
+      serverAddress: 192.168.0.172:6041 # edit it to your your IP
+      username: root
+      secret: taosdata
+      dbName: shifu
+      dbTable: Humidity
+      dbtype: TDengine
+
 
 ```
 
