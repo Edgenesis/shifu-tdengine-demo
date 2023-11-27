@@ -69,7 +69,7 @@ spec:
   telemetrySeriveEndpoint: http://telemetryservice.shifu-service.svc.cluster.local
   serviceSettings:
     SQLSetting:
-      serverAddress: 192.168.0.172:6041 # edit it to your your IP
+      serverAddress: [YOUR_IP]:6041 # edit it to your your IP
       username: root
       secret: taosdata
       dbName: shifu
@@ -85,7 +85,7 @@ spec:
   telemetrySeriveEndpoint: http://telemetryservice.shifu-service.svc.cluster.local
   serviceSettings:
     SQLSetting:
-      serverAddress: 192.168.0.172:6041 # edit it to your your IP
+      serverAddress: [YOUR_IP]:6041 # edit it to your your IP
       username: root
       secret: taosdata
       dbName: shifu
