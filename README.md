@@ -4,6 +4,13 @@
 
 ## Prepare
 
+install kind and create cluster
+
+```bash
+go install sigs.k8s.io/kind@v0.22.0
+kind create cluster
+```
+
 load all images to docker 🪞
 
 ```bash
