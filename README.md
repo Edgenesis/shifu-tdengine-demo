@@ -4,6 +4,23 @@
 
 ## Prepare
 
+kind needs to pull the image from the Docker Hub. If there is a firewall accessing it through your network, you need to configure a proxy for your bash
+your-ip requires the use of an internal network address, cannot use localhost or 127.0.0.1
+
+```bash
+# export http_proxy="http://your-ip:prot"
+# export https_proxy="http://your-ip:prot"
+# export all_proxy="socks5://your-ip:prot"
+# export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com"
+```
+
+install kind and create cluster
+
+```bash
+go install sigs.k8s.io/kind@v0.22.0
+kind create cluster
+```
+
 load all images to docker 🪞
 
 ```bash
