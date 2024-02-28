@@ -1,7 +1,7 @@
 FROM --platform=$BUILDPLATFORM golang:1.19.2 as builder
 
-# If your network is in China, please configure a proxy
-# ENV GOPROXY https://goproxy.cn,direct
+# If your network is behind a firewall, please configure a proxy
+# For example: ENV GOPROXY https://goproxy.cn,direct
 
 WORKDIR /shifudriver
 
