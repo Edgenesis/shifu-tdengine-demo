@@ -8,9 +8,9 @@ kind needs to pull the image from the Docker Hub. If there is a firewall accessi
 your-ip requires the use of an internal network address, cannot use localhost or 127.0.0.1
 
 ```bash
-# export http_proxy="http://your-ip:prot"
-# export https_proxy="http://your-ip:prot"
-# export all_proxy="socks5://your-ip:prot"
+# export http_proxy="http://your-ip:port"
+# export https_proxy="http://your-ip:port"
+# export all_proxy="socks5://your-ip:port"
 # export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com"
 ```
 
