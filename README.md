@@ -69,7 +69,7 @@ exit
 you just need to use one command to install Shifu 😋
 
 ```bash
-kubectl apply -f shifu_install.yml
+kubectl apply -f https://raw.githubusercontent.com/Edgenesis/shifu/v0.46.0/pkg/k8s/crd/install/shifu_install.yml
 ```
 
 ## Run Shifu TelemetryService
